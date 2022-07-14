@@ -20,7 +20,7 @@ class UserAdmin(BaseUserAdmin):
         (_('Permissions'), {
             'fields': ('is_active', 'is_superuser', 'is_staff'),
         }),
-        (_('Important dates'), {'fields': ('last_login',)}), 
+        (_('Important dates'), {'fields': ('last_login',)}),
     )
     readonly_fields = ['last_login']
 
