@@ -17,7 +17,7 @@ ME_URL = reverse('user:me')
 
 def create_user(**kwargs):
     """ Create and return a new user. """
-    return get_user_model().objects.create_user(**kwargs) 
+    return get_user_model().objects.create_user(**kwargs)
 
 
 class PublicUserApiTests(TestCase):
