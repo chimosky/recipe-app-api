@@ -59,12 +59,16 @@ class PublicRecipeAPITests(TestCase):
 
         self.assertEqual(res.status_code, status.HTTP_401_UNAUTHORIZED)
 
+
 class PrivateRecipeAPITests(TestCase):
     """ Test authenticated API requests. """
 
     def setUp(self):
         self.client = APIClient()
-        self.user = create_user(email='user@example.com', password='testpass123')
+        self.user = create_user(
+            email='user@example.com',
+            password='testpass123',
+        )
         self.client.force_authenticate(self.user)
 
     def test_retrieve_recipes(self):
@@ -84,7 +88,7 @@ class PrivateRecipeAPITests(TestCase):
         other_user = create_user(email='other@example.com', password='test123')
         create_recipe(user=other_user)
         create_recipe(user=self.user)
- 
+
         res = self.client.get(RECIPES_URL)
         recipes = Recipe.objects.filter(user=self.user)
         serializer = RecipeSerializer(recipes, many=True)
@@ -163,7 +167,10 @@ class PrivateRecipeAPITests(TestCase):
 
     def test_update_user_returns_error(self):
         """ Test changing the recipe user results in an error. """
-        new_user = create_user(email='newuser@example.com', password='newpass123')
+        new_user = create_user(
+            email='newuser@example.com',
+            password='newpass123',
+        )
         recipe = create_recipe(user=self.user)
 
         payload = {'user': new_user.id}
