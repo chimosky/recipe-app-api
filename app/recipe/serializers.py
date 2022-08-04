@@ -34,7 +34,6 @@ class RecipeSerializer(serializers.ModelSerializer):
                 **tag,
             )
             recipe.tags.add(tag_obj)
-        
 
     def create(self, validated_data):
         """ Create a recipe. """
@@ -56,7 +55,6 @@ class RecipeSerializer(serializers.ModelSerializer):
 
         instance.save()
         return instance
-        
 
 
 class RecipeDetailSerializer(RecipeSerializer):
